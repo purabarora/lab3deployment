@@ -34,14 +34,25 @@
     
       <div id="listSection">
         <div id="searchResults">
-          <h2>Search Results</h2>
+          <div style="display: flex; align-items: center;">
+            <h2>Search Results</h2>
+            <select id="addListDropdown" style="margin-left: 10px;"></select> <!-- Dropdown to the right of header -->
+          </div>
+          
           <div id="paginationControls">
             <button id="prevPageBtn" disabled>&lt;</button>
             <span id="currentPage">Page 1</span>
             <button id="nextPageBtn">&gt;</button>
           </div>
-          <ul id="searchResultsList"></ul>
+          
+          <ul id="searchResultsList"></ul> <!-- Each result will have its own "Add to List" button -->
         </div>
+        
+
+
+        
+        
+        
         
     
         <div id="destinationList">

@@ -48,25 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function createPopupContent(location) {
-    const listOptions = lists
-      .map((list) => `<option value="${list.id}">${list.name}</option>`)
-      .join("");
-
-    const addToDropdown = `
-      <select id="addToListDropdown" ${lists.length === 0 ? "disabled" : ""}>
-        <option value="">Select a list</option>
-        ${listOptions}
-      </select>
-    `;
-
-    const addToListButton = `
-      <button id="addToListBtn" onclick="addToList('${location.name}')" ${
-      lists.length === 0 ? "disabled" : ""
-    }>
-        Add to List
-      </button>
-    `;
-
     return `
       <b>${location.name}, ${location.region}</b><br>
       <p><strong>Tourists:</strong> ${location.tourists}</p>
@@ -79,8 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <p><strong>Safety:</strong> ${location.safety}</p>
       <p><strong>Cultural Significance:</strong> ${location.significance}</p>
       <p><strong>Description:</strong> ${location.description}</p>
-      ${addToDropdown}
-      ${addToListButton}
     `;
   }
 
@@ -376,7 +355,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.json())
       .then(() => loadLists())
-      .then(updateMarkerPopups)
+      .then(loadAddListDropdown)
       .then(() => {
         newListNameInput.value = "";
         newListNameInput.style.display = "none";
@@ -433,10 +412,73 @@ document.addEventListener("DOMContentLoaded", function () {
 
     locations.forEach((location) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${location.name} (${location.region})`;
+      listItem.className = "search-result-item";
+      listItem.innerHTML = `
+        <div class="result-content">
+          <strong>${location.name} (${location.region})</strong>
+          <button class="addToListBtn">Add to List</button>
+        </div>
+      `;
+
+      // Add event listener to the "Add to List" button for each search result
+      listItem.querySelector(".addToListBtn").addEventListener("click", () => {
+        const selectedListId = document.getElementById("addListDropdown").value;
+        if (!selectedListId) {
+          alert("Please select a list to add the destination.");
+          return;
+        }
+        addToList(selectedListId, location);
+      });
+
       searchResultsList.appendChild(listItem);
     });
   }
+
+  function addToList(listId, location) {
+    fetch(`http://localhost:3000/api/lists/${listId}/destinations`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ destination: { name: location.name } }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        alert(`Added "${location.name}" to the selected list.`);
+      })
+      .catch((error) => console.error("Error adding to list:", error));
+  }
+
+  // Function to load lists into the add-to-list dropdown
+  function loadAddListDropdown() {
+    fetch("http://localhost:3000/api/lists")
+      .then((response) => response.json())
+      .then((fetchedLists) => {
+        const addListDropdown = document.getElementById("addListDropdown");
+        addListDropdown.innerHTML = ""; // Clear existing options
+
+        // Add a placeholder option at the top
+        const placeholderOption = document.createElement("option");
+        placeholderOption.value = "";
+        placeholderOption.textContent = "Select a list";
+        placeholderOption.disabled = true;
+        placeholderOption.selected = true;
+        addListDropdown.appendChild(placeholderOption);
+
+        // Populate dropdown with list options
+        fetchedLists.forEach((list) => {
+          const option = document.createElement("option");
+          option.value = list.id;
+          option.textContent = list.name;
+          addListDropdown.appendChild(option);
+        });
+      })
+      .catch((error) =>
+        console.error("Error loading add-to-list dropdown:", error)
+      );
+  }
+
+  loadAddListDropdown();
 
   function setupPaginationControls() {
     const prevPageBtn = document.getElementById("prevPageBtn");

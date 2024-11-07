@@ -200,15 +200,20 @@ select {
   padding: 8px 16px;
 }
 
-#addToListBtn {
+.addToListBtn {
   padding: 8px 16px;
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+}
+
+.search-result-item .result-content {
+  display: flex;
+  justify-content: space-between; /* Pushes content to the edges */
+  align-items: center; /* Centers button vertically with text */
+  padding: 10px 0;
 }
 
 .delete-btn {
