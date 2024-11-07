@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="lab3.js"></script>
+    <title>Europe's Travel Destinations</title>
+  </head>
+  <body>
+    <header>
+      <h1>Europe's Travel Destinations</h1>
+    </header>
+
+    <section class="controls">
+      <label for="countryDropdown">Select Country:</label>
+      <select id="countryDropdown">
+        <option value="">--Choose a country--</option>
+      </select>
+    
+      <label for="resultsPerPageDropdown">Results per Page:</label>
+      <select id="resultsPerPageDropdown">
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="9">9</option>
+      </select>
+    </section>
+    
+    <h4 style="margin-left: 180px;">Click on map markers for information about the destination.</h4>
+    <section class="main-content">
+      <div id="map"></div>
+    
+      <div id="listSection">
+        <div id="searchResults">
+          <h2>Search Results</h2>
+          <div id="paginationControls">
+            <button id="prevPageBtn" disabled>&lt;</button>
+            <span id="currentPage">Page 1</span>
+            <button id="nextPageBtn">&gt;</button>
+          </div>
+          <ul id="searchResultsList"></ul>
+        </div>
+        
+    
+        <div id="destinationList">
+          <h2>My Lists</h2>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <select id="listDropdown">
+              <option value="" disabled selected hidden>Select List</option>
+              <option value="create">+ Create New List</option>
+            </select>
+            <button id="deleteListBtn" style="display: none;">Delete List</button>
+          </div>
+        
+          <div id="sortSection" style="display: none;">
+            <label for="sortDropdown">Sort Destinations By:</label>
+            <select id="sortDropdown">
+              <option value="name">Name</option>
+              <option value="region">Region</option>
+              <option value="country">Country</option>
+            </select>
+          </div>
+          
+          <input type="text" id="newListName" placeholder="Enter list name" style="display: none;">
+          <button id="createListBtn" style="display: none;">Create List</button>
+          <ul id="list"></ul>
+        </div>
+        
+        
+        
+      </div>
+    </section>
+    
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  </body>
+</html>

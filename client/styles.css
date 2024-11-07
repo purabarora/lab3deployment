@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+}
+
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+#map {
+  height: 620px;
+  width: 65%;
+  border: 1px solid #ccc;
+}
+
+#listSection {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#searchResults,
+#destinationList {
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#searchResults {
+  height: 200px;
+  overflow-y: auto;
+}
+
+#searchResults h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#searchResultsList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#destinationList {
+  overflow-y: auto;
+  height: 400px;
+}
+
+#destinationList h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+#destinationList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#destinationList ul li {
+  font-size: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.myListsDestinationContainer {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.myListsDestinationContainer h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.myListsDestinationList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.myListsDestinationItem {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.myListsDestinationItem h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #4CAF50;
+}
+
+.myListsDestinationItem p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.myListsDestinationItem strong {
+  color: #333;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.pagination-controls button {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+#paginationControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#paginationControls button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#paginationControls button:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+#paginationControls button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+#currentPage {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+#createListBtn {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#newListName {
+  padding: 8px 16px;
+}
+
+#addToListBtn {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn {
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
+
+#deleteListBtn {
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#deleteListBtn:hover {
+  background-color: #cc0000;
+}
+
+#sortDropdown {
+  margin-top: 10px;
+}
