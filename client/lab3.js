@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function loadAllLocations() {
-    fetch("http://localhost:3000/api/locations")
+    fetch("/api/locations")
       .then((response) => response.json())
       .then((locations) => {
         locations.forEach((location) => {
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const destination = { name: destinationName };
 
-    fetch(`http://localhost:3000/api/lists/${selectedListId}/destinations`, {
+    fetch(`/api/lists/${selectedListId}/destinations`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadAllLocations();
 
-  fetch("http://localhost:3000/api/countries")
+  fetch("/api/countries")
     .then((response) => response.json())
     .then((countries) => {
       countries.forEach((country) => {
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clearMarkers();
 
     fetch(
-      `http://localhost:3000/api/filtered-locations?country=${encodeURIComponent(
+      `/api/filtered-locations?country=${encodeURIComponent(
         country
       )}&city=${encodeURIComponent(city)}`
     )
@@ -166,11 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function zoomToLocation(country) {
-    fetch(
-      `http://localhost:3000/api/filtered-locations?country=${encodeURIComponent(
-        country
-      )}`
-    )
+    fetch(`/api/filtered-locations?country=${encodeURIComponent(country)}`)
       .then((response) => response.json())
       .then((data) => {
         const locations = data.locations;
@@ -185,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function loadLists() {
-    return fetch("http://localhost:3000/api/lists")
+    return fetch("/api/lists")
       .then((response) => response.json())
       .then((fetchedLists) => {
         lists = fetchedLists;
@@ -245,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function deleteList(listId) {
-    fetch(`http://localhost:3000/api/lists/${listId}`, {
+    fetch(`/api/lists/${listId}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
@@ -258,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function displayListDestinations(listId, sortBy = "name") {
-    fetch(`http://localhost:3000/api/lists/${listId}`)
+    fetch(`/api/lists/${listId}`)
       .then((response) => response.json())
       .then((list) => {
         destinationListContainer.innerHTML = "";
@@ -296,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.deleteDestinationFromList = function (listId, destinationName) {
-    fetch(`http://localhost:3000/api/lists/${listId}/destinations`, {
+    fetch(`/api/lists/${listId}/destinations`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -346,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    fetch("http://localhost:3000/api/lists", {
+    fetch("/api/lists", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -380,7 +376,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clearMarkers();
 
     fetch(
-      `http://localhost:3000/api/filtered-locations?country=${country}&limit=${resultsPerPage}&page=${page}`
+      `/api/filtered-locations?country=${country}&limit=${resultsPerPage}&page=${page}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -435,7 +431,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function addToList(listId, location) {
-    fetch(`http://localhost:3000/api/lists/${listId}/destinations`, {
+    fetch(`/api/lists/${listId}/destinations`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -451,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to load lists into the add-to-list dropdown
   function loadAddListDropdown() {
-    fetch("http://localhost:3000/api/lists")
+    fetch("/api/lists")
       .then((response) => response.json())
       .then((fetchedLists) => {
         const addListDropdown = document.getElementById("addListDropdown");
